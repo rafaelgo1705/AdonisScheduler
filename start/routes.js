@@ -18,10 +18,15 @@ const TweetController = require('../app/Controllers/Http/TweetController');
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
+Route.get('/', () => 'Conectado');
+
 Route.post("/register", "AuthController.register");
 Route.post("/authenticate", "AuthController.authenticate");
 
+/*Route.group(() => {
+    Route.resource("tweets", "TweetController").apiOnly();
+}).middleware("auth");*/
+
 Route.group(() => {
     Route.resource("tweets", "TweetController").apiOnly();
-}).middleware("auth");
-
+});
