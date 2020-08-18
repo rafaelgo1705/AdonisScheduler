@@ -1,7 +1,5 @@
 'use strict'
 
-const TweetController = require('../app/Controllers/Http/TweetController');
-
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -23,10 +21,6 @@ Route.get('/', () => 'Conectado');
 Route.post("/register", "AuthController.register");
 Route.post("/authenticate", "AuthController.authenticate");
 
-/*Route.group(() => {
-    Route.resource("tweets", "TweetController").apiOnly();
-}).middleware("auth");*/
-
 Route.group(() => {
-    Route.resource("tweets", "TweetController").apiOnly();
-});
+    Route.resource("agenda", "AgendaController").apiOnly();
+}).middleware("auth");

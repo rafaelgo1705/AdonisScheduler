@@ -3,9 +3,9 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema')
 
-class TweetSchema extends Schema {
+class AgendaSchema extends Schema {
   up () {
-    this.create('tweets', (table) => {
+    this.create('agenda', (table) => {
       table.increments()
       table
         .integer('user_id')
@@ -15,14 +15,15 @@ class TweetSchema extends Schema {
         .inTable('users')
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
-      table.string('content', 240).notNullable()
+      table.string('name', 100).notNullable()
+      table.datetime('dateHour').notNullable()
       table.timestamps()
     })
   }
 
   down () {
-    this.drop('tweets')
+    this.drop('agenda')
   }
 }
 
-module.exports = TweetSchema
+module.exports = AgendaSchema
