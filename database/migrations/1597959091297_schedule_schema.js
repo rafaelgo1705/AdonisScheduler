@@ -3,9 +3,9 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema')
 
-class AgendaSchema extends Schema {
+class ScheduleSchema extends Schema {
   up () {
-    this.create('agenda', (table) => {
+    this.create('schedules', (table) => {
       table.increments()
       table
         .integer('user_id')
@@ -16,14 +16,15 @@ class AgendaSchema extends Schema {
         .onUpdate('CASCADE')
         .onDelete('CASCADE')
       table.string('name', 100).notNullable()
-      table.datetime('dateHour').notNullable()
+      table.date('date').notNullable()
+      table.time('hour').notNullable()
       table.timestamps()
     })
   }
 
   down () {
-    this.drop('agenda')
+    this.drop('schedules')
   }
 }
 
-module.exports = AgendaSchema
+module.exports = ScheduleSchema
