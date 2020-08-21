@@ -64,7 +64,7 @@ class ScheduleController {
    */
   async update ({ params, request }) {
     const data = request.only([ 'date', 'hour', 'name' ]);
-    const  schedule = await post.find(params.id);
+    const schedule = await post.find(params.id);
 
     schedule.merge(data);
 

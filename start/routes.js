@@ -9,9 +9,15 @@ Route.post("/register", "AuthController.register").validator('UserStore');
 Route.post("/authenticate", "AuthController.authenticate");
 
 Route.group(() => {
-    Route.resource("schedule", "ScheduleController").apiOnly();
+    Route.resource("schedule", "ScheduleController")
+        .apiOnly()
+        .validator(new Map([
+            [['schedule.store'], ['ScheduleStore']],
+          ]));
 }).middleware("auth");
 
-/*Route.group(() => {
-    Route.resource("schedule", "ScheduleController").apiOnly();
-});*/
+    // * Rota de usuário *
+//Route.resource("user", "UserController").apiOnly().except(['show', 'store']);
+
+    // * Rota de teste *
+//Route.resource("schedule", "ScheduleController").apiOnly();
