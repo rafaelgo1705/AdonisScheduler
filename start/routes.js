@@ -5,7 +5,7 @@ const Route = use('Route')
 
 Route.get('/', () => 'Conectado');
 
-Route.post("/register", "AuthController.register");
+Route.post("/register", "AuthController.register").validator('UserStore');
 Route.post("/authenticate", "AuthController.authenticate");
 
 Route.group(() => {
