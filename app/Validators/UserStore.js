@@ -8,7 +8,6 @@ class UserStore {
   get sanitizationRules () {
     return {
       email: 'normalize_email',
-      age: 'to_int'
     }
   }
 
@@ -23,13 +22,14 @@ class UserStore {
 
   get messages () {
     return {
-      'email.required': 'Você precisa inserir um e-mail',
-      'email.email': 'Você precisa inserir um e-mail válido',
-      'email.unique': 'Este e-mail já está cadastrado',
-      'password.required': 'Você precisa cadastrar uma senha',
-      'username.required': 'Você precisa inserir um nome de usuário',
-      'username.unique': 'Este usuário já está sendo utilizado em outra conta',
-      'name.required': 'Você precisa inserir um nome'
+      'name.required': 'Insira um nome!',
+      'username.required': 'Insira um nome de usuário!',
+      'email.required': 'Insira um e-mail!',
+      'password.required': 'Insira uma senha!',
+      'username.unique': 'Usuário já está sendo utilizado!',
+      'email.email': 'O e-mail não é válido!',
+      'email.unique': 'E-mail já está cadastrado!',
+       
     }
   }
 

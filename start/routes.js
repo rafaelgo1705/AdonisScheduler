@@ -15,9 +15,3 @@ Route.group(() => {
             [['schedule.store'], ['ScheduleStore']],
           ]));
 }).middleware("auth");
-
-    // * Rota de usuário *
-//Route.resource("user", "UserController").apiOnly().except(['show', 'store']);
-
-    // * Rota de teste *
-//Route.resource("schedule", "ScheduleController").apiOnly();
