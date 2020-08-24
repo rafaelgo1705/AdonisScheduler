@@ -13,5 +13,6 @@ Route.group(() => {
         .apiOnly()
         .validator(new Map([
             [['schedule.store'], ['ScheduleStore']],
+            [['schedule.update'], ['ScheduleUpdate']],
           ]));
 }).middleware("auth");

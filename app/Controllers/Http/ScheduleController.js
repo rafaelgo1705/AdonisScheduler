@@ -3,6 +3,7 @@
 const { post } = require('@adonisjs/framework/src/Route/Manager');
 
 const Schedule = use('App/Models/Schedule')
+const Database = use('Database')
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
@@ -19,7 +20,13 @@ class ScheduleController {
    * @param {View} ctx.view
    */
   async index ({ auth }) {
-    const schedule = await Schedule.query().where('user_id', auth.user.id).fetch();
+    const schedule =  
+            Database.table('schedules')
+				   .select('*')
+           .select(Database.raw('DATE_FORMAT(date, "%d-%m-%Y") as date'))
+           .select(Database.raw('DATE_FORMAT(hour, "%H:%m") as hour'))
+           .where('user_id', auth.user.id)
+           .orderBy('name')
 
     return schedule;
   }
@@ -49,7 +56,17 @@ class ScheduleController {
    * @param {View} ctx.view
    */
   async show ({ params, auth }) {
-    const schedule = await Schedule.query().where('user_id', auth.user.id).where('id', params.id).fetch();
+    //const schedule = await Schedule.query().where('user_id', auth.user.id).where('id', params.id).fetch();
+    const schedule =  
+            Database.table('schedules')
+				   .select('*')
+           .select(Database.raw('DATE_FORMAT(date, "%d-%m-%Y") as date'))
+           .select(Database.raw('DATE_FORMAT(hour, "%H:%m") as hour'))
+           .select(Database.raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
+           .select(Database.raw('DATE_FORMAT(updated_at, "%d-%m-%Y") as updated_at'))
+           .where('id', params.id)
+           .where('user_id', auth.user.id)
+           .orderBy('name')
 
     return schedule;
   }
@@ -64,7 +81,7 @@ class ScheduleController {
    */
   async update ({ params, request }) {
     const data = request.only([ 'date', 'hour', 'name' ]);
-    const schedule = await post.find(params.id);
+    const schedule = await Schedule.find(params.id);
 
     schedule.merge(data);
 

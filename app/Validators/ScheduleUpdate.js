@@ -1,6 +1,6 @@
 'use strict'
 
-class ScheduleStore {
+class ScheduleUpdate {
   get validateAll () {
     return true
   }
@@ -26,4 +26,4 @@ class ScheduleStore {
   }
 }
 
-module.exports = ScheduleStore
+module.exports = ScheduleUpdate

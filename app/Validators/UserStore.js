@@ -34,7 +34,7 @@ class UserStore {
   }
 
   async fails (errorMessages) {
-    return this.ctx.response.send(errorMessages)
+    return this.ctx.response.status(406).send(errorMessages)
   }
 }
 
