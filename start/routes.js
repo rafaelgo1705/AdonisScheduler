@@ -15,4 +15,7 @@ Route.group(() => {
             [['schedule.store'], ['ScheduleStore']],
             [['schedule.update'], ['ScheduleUpdate']],
           ]));
+
+    Route.resource("user", "UserController").apiOnly();
 }).middleware("auth");
+

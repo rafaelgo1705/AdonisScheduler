@@ -13,7 +13,7 @@ class UserController {
    * @param {View} ctx.view
    */
   async index ({ auth }) {
-    const user = await User.query().where("id", auth.user.id);
+    const user = await User.query().where("id", auth.user.id).fetch();
 
     return user;
   }

@@ -56,11 +56,9 @@ class ScheduleController {
    * @param {View} ctx.view
    */
   async show ({ params, auth }) {
-    //const schedule = await Schedule.query().where('user_id', auth.user.id).where('id', params.id).fetch();
     const schedule =  
             Database.table('schedules')
 				   .select('*')
-           .select(Database.raw('DATE_FORMAT(date, "%d-%m-%Y") as date'))
            .select(Database.raw('DATE_FORMAT(hour, "%H:%m") as hour'))
            .select(Database.raw('DATE_FORMAT(created_at, "%d-%m-%Y") as created_at'))
            .select(Database.raw('DATE_FORMAT(updated_at, "%d-%m-%Y") as updated_at'))
